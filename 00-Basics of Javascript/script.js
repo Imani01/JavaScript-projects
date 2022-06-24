@@ -509,3 +509,128 @@ const tip = 50 >= bill <= 300 ? bill * 0.15 : bill * 0.2;
 console.log(`The bill was ${bill}, the tip was ${tip}, and the total value 
 ${bill + tip}`);
 */
+
+// Coding challenge On data structures.
+// Challenge #1 and #2
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borussia Dortmund',
+  players: [
+    // Bayern Munich
+    [
+      'Neuer',
+      'Parvad',
+      'Martinez',
+      'Alaba',
+      'Davis',
+      'Kimich',
+      'Goretzka',
+      'Koman',
+      'Muller',
+      'Gnarby',
+      'Lewandoski',
+
+    ],
+    // Borussia Dortmund
+    [
+      'Burk1',
+      'Schulz',
+      'Humels',
+      'Akanji',
+      'Hakini',
+      'Weigl',
+      'Witsel',
+      'Harzard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  Score: '4-0',
+  Scored: ['Lewandoski', 'Gnarby', 'Lewandoski', 'Humels'],
+  date: 'Nov 9th, 2018',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.25,
+  },
+};
+// Question 1
+const players1 = game.players[0];
+const players2 = game.players[1];
+
+// Question 2
+// Bayern Munich 
+const [gk, ...fieldplayers] = game.players[0];
+console.log(gk);
+console.log(fieldplayers);
+
+//An array of 22 players
+const allplayers = [...players1,...players2];
+console.log(allplayers);
+
+// adding two arrays
+const substitutes = ['Thiago', 'Courtino', 'Perisic'];
+const playersFinal = [...game.players[0], ...substitutes];
+// creating variables
+console.log(playersFinal);
+const { team1, x: draw, team2 } = game.odds;
+console.log(team1, draw, team2);
+
+// function printGoals
+const printGoals = function (...arbitrary_players) {
+  console.log(`${arbitrary_players.length} goals were scored!!` ); // count the number of elements in the array
+
+}
+printGoals('Davis',
+  'Kimich',
+  'Muller',
+  'Lewandoski'
+);
+printGoals(...game.Scored); // breaks the number of players into 4 'String[]'
+
+// Question 7
+// && continues the operation when 1 is evaluated to true but || short circuits when a true value is found.
+team1 < team2 && console.log('Team1 is more likely to win');
+for (const [key ,value] of game.Scored.entries()) console.log(key,value); // returns an array containing key and value
+
+for (const item of game.Scored.entries())  {
+  // printing a nice Item list beginning at 1
+  console.log(`Goal ${item[0] + 1}: ${item[1]}`);
+}
+
+// loop for averages
+const show_odds = Object.values(game.odds);
+// console.log(show_odds);
+let sum_avg_odd = 0;
+
+for (const all_odds of show_odds) {
+  sum_avg_odd += all_odds;
+  // console.log(all_odds);
+}
+console.log(sum_avg_odd / 3);
+
+// Nice formatted way
+
+console.log(`
+  Odd of victory of ${game.team1}: ${team1}
+  Odd of draw: ${draw}
+  Odd of victory of  ${game.team2}: ${team2}`
+);
+
+// creating of an object
+function Scorers() {
+  this.Gnarby = 1;
+    this.Humels = 1;
+    this.Lewandoski = 2;
+}
+const scorers = new Scorers();
+console.log(scorers);
+
+// Alteratively
+const scorers1 = new Object ({
+  Gnarby: 1,
+  Humels: 1,
+  Lewandoski: 2,
+});
+console.log(scorers1);
