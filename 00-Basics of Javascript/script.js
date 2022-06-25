@@ -510,50 +510,51 @@ console.log(`The bill was ${bill}, the tip was ${tip}, and the total value
 ${bill + tip}`);
 */
 
+/*
 // Coding challenge On data structures.
 // Challenge #1 and #2
 const game = {
-  team1: 'Bayern Munich',
-  team2: 'Borussia Dortmund',
-  players: [
-    // Bayern Munich
-    [
-      'Neuer',
-      'Parvad',
-      'Martinez',
-      'Alaba',
-      'Davis',
-      'Kimich',
-      'Goretzka',
-      'Koman',
-      'Muller',
-      'Gnarby',
-      'Lewandoski',
+    team1: 'Bayern Munich',
+    team2: 'Borussia Dortmund',
+    players: [
+        // Bayern Munich
+        [
+            'Neuer',
+            'Parvad',
+            'Martinez',
+            'Alaba',
+            'Davis',
+            'Kimich',
+            'Goretzka',
+            'Koman',
+            'Muller',
+            'Gnarby',
+            'Lewandoski',
 
+        ],
+        // Borussia Dortmund
+        [
+            'Burk1',
+            'Schulz',
+            'Humels',
+            'Akanji',
+            'Hakini',
+            'Weigl',
+            'Witsel',
+            'Harzard',
+            'Brandt',
+            'Sancho',
+            'Gotze',
+        ],
     ],
-    // Borussia Dortmund
-    [
-      'Burk1',
-      'Schulz',
-      'Humels',
-      'Akanji',
-      'Hakini',
-      'Weigl',
-      'Witsel',
-      'Harzard',
-      'Brandt',
-      'Sancho',
-      'Gotze',
-    ],
-  ],
-  Score: '4-0',
-  Scored: ['Lewandoski', 'Gnarby', 'Lewandoski', 'Humels'],
-  date: 'Nov 9th, 2018',
-  odds: {
-    team1: 1.33,
-    x: 3.25,
-    team2: 6.25,
-  },
+    Score: '4-0',
+    Scored: ['Lewandoski', 'Gnarby', 'Lewandoski', 'Humels'],
+    date: 'Nov 9th, 2018',
+    odds: {
+        team1: 1.33,
+        x: 3.25,
+        team2: 6.25,
+    },
 };
 // Question 1
 const players1 = game.players[0];
@@ -566,7 +567,7 @@ console.log(gk);
 console.log(fieldplayers);
 
 //An array of 22 players
-const allplayers = [...players1,...players2];
+const allplayers = [...players1, ...players2];
 console.log(allplayers);
 
 // adding two arrays
@@ -578,25 +579,25 @@ const { team1, x: draw, team2 } = game.odds;
 console.log(team1, draw, team2);
 
 // function printGoals
-const printGoals = function (...arbitrary_players) {
-  console.log(`${arbitrary_players.length} goals were scored!!` ); // count the number of elements in the array
+const printGoals = function(...arbitrary_players) {
+    console.log(`${arbitrary_players.length} goals were scored!!`); // count the number of elements in the array
 
 }
 printGoals('Davis',
-  'Kimich',
-  'Muller',
-  'Lewandoski'
+    'Kimich',
+    'Muller',
+    'Lewandoski'
 );
 printGoals(...game.Scored); // breaks the number of players into 4 'String[]'
 
 // Question 7
 // && continues the operation when 1 is evaluated to true but || short circuits when a true value is found.
 team1 < team2 && console.log('Team1 is more likely to win');
-for (const [key ,value] of game.Scored.entries()) console.log(key,value); // returns an array containing key and value
+for (const [key, value] of game.Scored.entries()) console.log(key, value); // returns an array containing key and value
 
-for (const item of game.Scored.entries())  {
-  // printing a nice Item list beginning at 1
-  console.log(`Goal ${item[0] + 1}: ${item[1]}`);
+for (const item of game.Scored.entries()) {
+    // printing a nice Item list beginning at 1
+    console.log(`Goal ${item[0] + 1}: ${item[1]}`);
 }
 
 // loop for averages
@@ -605,8 +606,8 @@ const show_odds = Object.values(game.odds);
 let sum_avg_odd = 0;
 
 for (const all_odds of show_odds) {
-  sum_avg_odd += all_odds;
-  // console.log(all_odds);
+    sum_avg_odd += all_odds;
+    // console.log(all_odds);
 }
 console.log(sum_avg_odd / 3);
 
@@ -615,12 +616,11 @@ console.log(sum_avg_odd / 3);
 console.log(`
   Odd of victory of ${game.team1}: ${team1}
   Odd of draw: ${draw}
-  Odd of victory of  ${game.team2}: ${team2}`
-);
+  Odd of victory of  ${game.team2}: ${team2}`);
 
 // creating of an object
 function Scorers() {
-  this.Gnarby = 1;
+    this.Gnarby = 1;
     this.Humels = 1;
     this.Lewandoski = 2;
 }
@@ -628,9 +628,55 @@ const scorers = new Scorers();
 console.log(scorers);
 
 // Alteratively
-const scorers1 = new Object ({
-  Gnarby: 1,
-  Humels: 1,
-  Lewandoski: 2,
+const scorers1 = new Object({
+    Gnarby: 1,
+    Humels: 1,
+    Lewandoski: 2,
 });
 console.log(scorers1);
+*/
+
+const gameEvents = new Map([
+    [17, '⚽️ GOAL'],
+    [36, '🔁 Substitution'],
+    [47, '⚽️ GOAL'],
+    [61, '🔁 Substitution'],
+    [64, '🔶 Yellow card'],
+    [69, '🔴 Red card'],
+    [70, '🔁 Substitution'],
+    [72, '🔁 Substitution'],
+    [76, '⚽️ GOAL'],
+    [80, '⚽️ GOAL'],
+    [92, '🔶 Yellow card'],
+]);
+// Coding challenge #3
+// Array set f unique events
+const events = [...new Set(gameEvents.values())];
+console.log(events);
+
+//Remove 64th minute yellow card
+gameEvents.delete(64);
+console.log(gameEvents);
+
+//Average event happen time
+console.log(`
+  An event happened, on average, every ${90 / gameEvents.size } minutes.
+`);
+
+// print event and in it's halve
+const time = 45;
+for (let [key, value] of gameEvents.entries()) {
+    const string = key < time ? `[FIRST HALF] ${key} : ${value}` : `[SECOND HALF] ${key} : ${value}`;
+    console.log(string);
+};
+
+console.log('Alteratively');
+
+// Alteratively
+for (const [min, events] of gameEvents.entries()) {
+    const half = min <= 45 ? 'FIRST' : 'SECOND';
+    console.log(`${half}HALF ${min}:${events}`);
+}
+//Return the last elementof the keys
+const LanTime = [...gameEvents.keys()].pop(); // pop () returns the last element of the array
+console.log(LanTime);
