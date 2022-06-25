@@ -3,6 +3,8 @@ Read => README.md // despite as the name suggests am here to be read 😂😂�
 My-Hands on JavaScript projects.
 Make sure you read the notes before proceeding to the next Sub-Folder.
 
+add <link rel="shortcut icon" href="#"> to the .html // gets rid of the <! -- Favicon -- > errow when opening the files with Live server.
+
 # NOTES
 # 00- Basics of JavaScript -00
 Instructions: 🧮
