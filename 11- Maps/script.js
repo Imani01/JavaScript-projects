@@ -89,8 +89,8 @@ const newMap1 = new Map([
 
     ['time-start', 12],
     ['time-end', 23],
-    [true, 'YaY - Correct'],
-    [false, 'OOps Try Again'],
+    [true, 'YaY - Correct 🤪'],
+    [false, 'OOps Try Again '],
 
 ]);
 console.log(newMap1);
@@ -101,8 +101,12 @@ const newMap2 = new Map(Object.entries(rest.openingHours)); // These is because 
 console.log(newMap2);
 
 // Iterating over maps
-let user_ans = prompt(newMap1.get('Question'));
-for (let index of newMap1.keys()) {
-    console.log(newMap1.get(index));
+for (let [key, value] of newMap1) {
+    // console.log(newMap1.get(index));
+    if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
 
 }
+let user_ans = Number(prompt(newMap1.get('Question')));
+const result = user_ans !== 1 ? newMap1.get(false) : newMap1.get(true);
+console.log(result);
+//Converting a map to an array
