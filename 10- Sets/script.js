@@ -1,14 +1,30 @@
 
 'use strict';
 // Sets and Maps
-// A map is a data structure that we use to map values to keys
-// Similar to objects but maps can have any type as the key 
+// Sets are a collection of unique values and do not contain duplicates
+const newSet = new Set(['pizza', 'rissoto', 'pasta', 'pizza', 'garlic']);  // How we create new array sets.
+console.log(newSet);
+console.log(new Set('Proholycepr').size); // caps sensitive // size || length
+console.log(newSet.has('pizza')); // has || includes return boolean
 
-const restaurant = new Map(); // creating a map
-// Then to add to the map we use the set(); method
-restaurant.set('name', 'Classico Italiano'); // (key,value)
-restaurant.set(1, 'Florenze, Italy');
-restaurant.set(2, 'Lisbon, Portugal');
+// Adding an element or string to the set
+newSet.add('red pepper');
+newSet.add('red pepper');
+console.log(newSet);
 
-// Since each set(); method returns the new set thus we can also chain the sets
-restaurant.set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic']).set('open',11).set('close',23).set(true, 'We are Open').set(false,'We are closed')
+// Delete an element from the set
+newSet.delete('garlic');
+console.log(newSet);
+
+// looping  through a set 
+for (let order of newSet) { console.log(order); }
+
+// creating a set from arrays
+const arr = ['Chief', 'Security', 'Accountant', 'Chef','Manager', 'Chef'];
+const SetArr = new Set(arr);
+// creating an new array with unique text ie without repetition.
+const playArr = [...new Set(arr)];
+console.log(SetArr); 
+console.log(playArr);
+
+// NOTE Since sets are also iterables the same manipulation done with arrays can be used on sets
