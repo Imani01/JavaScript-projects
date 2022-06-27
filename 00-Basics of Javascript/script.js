@@ -661,7 +661,8 @@ console.log(gameEvents);
 //Average event happen time
 console.log(`
   An event happened, on average, every ${90 / gameEvents.size } minutes.
-`);
+  
+`); // String Literal
 
 // print event and in it's halve
 const time = 45;
@@ -670,12 +671,12 @@ for (let [key, value] of gameEvents.entries()) {
     console.log(string);
 };
 
-console.log('Alteratively');
+console.log(`\t \n  Alteratively \n \t`); // \t for tabs. \n for next line. 
 
 // Alteratively
 for (const [min, events] of gameEvents.entries()) {
     const half = min <= 45 ? 'FIRST' : 'SECOND';
-    console.log(`${half}HALF ${min}:${events}`);
+    console.log(`${half} HALF ${min}: ${events}`);
 }
 //Return the last elementof the keys
 const LanTime = [...gameEvents.keys()].pop(); // pop () returns the last element of the array

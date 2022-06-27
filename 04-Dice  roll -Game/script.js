@@ -85,7 +85,7 @@ hold.addEventListener('click', function () {
     results[activeplayer] += sum;
     document.getElementById(`score--${activeplayer}`).textContent = results[activeplayer];
     // check if the current score is >= 100
-    if (results[activeplayer] >= 20) {
+    if (results[activeplayer] >= 100) {
       document.querySelector(`.player--${activeplayer}`).classList.add('player--winner');
       document.querySelector(`.player--${activeplayer}`).classList.remove('player--active');
       
