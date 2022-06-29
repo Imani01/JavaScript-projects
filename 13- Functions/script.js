@@ -1,4 +1,4 @@
-'use strict'; 
+'use strict';
 
 // function are just values and are very improtant as in functional programming
 // We could do the above in one line as 
@@ -11,7 +11,7 @@ const greet_user = greetArr('Karibu');
 greet_user('Proholyce');
 
 // returning functions from arguments
-const wave = () => console.log('Hey,✋ '); 
+const wave = () => console.log('Hey,✋ ');
 ['first_name', 'second_name', 'surname'].forEach(wave);
 
 // arrow fn
@@ -32,12 +32,12 @@ const person = {
 };
 
 // NOTE 
-const details = function (listen,fli_number, user){
+const details = function (listen, fli_number, user) {
     fli_number = 'LCU48E';
     user.name = 'Sir ' + user.name;
     console.log(`This is the last call for flight number ${ listen }`);
     console.log(`CheckOfficer: ${ user.name } that is your ${ fli_number } plane call`);
-    
+
 };
 // funtion call
 details(flight_call, flight_number, person);
@@ -67,18 +67,18 @@ const randomplace = function (
     topography = 120,
     // if this were to be done before initialization of topography it would return an error
     tourists = 3.1 * topography) { // calculations can also be done with the default values 
-    console.log(`The No. of Tourists in ${ names} in millions:
-Topography of ${topography} is ${tourists}`);
+    console.log(`The No. of Tourists in ${ names } in millions:
+Topography of ${ topography } is ${ tourists }`);
 };
 
 randomplace('London', undefined, 2.33); // the call is set to undefined if you want to use the default values 
 // when called with all the default values
-randomplace(undefined, undefined, undefined); 
+randomplace(undefined, undefined, undefined);
 
 const counter = {
     value: 17,
     increment: function () { //arrow fns cannot use this keyword
-       return  this.value++;
+        return this.value++;
     },
 };
 console.log(counter.increment());
@@ -86,14 +86,14 @@ console.log(counter.increment());
 // fns taking in other fns and returning from them
 // task - fn that accepts a string and returns it without space
 let newArray = [];
-const oneWord = function (str){
+const oneWord = function (str) {
     str = str.split(' ');
     console.log(str.join(''));
 };
 
 // task - fn that cpitalizes the first word of a string
 const FstWordCaps = function (str) {
-    const [firstletter,...others] = str.split(' ');
+    const [firstletter, ...others] = str.split(' ');
     newArray = [firstletter.toUpperCase(), ...others].join(' ');
     return console.log(newArray);
 };
@@ -104,8 +104,8 @@ FstWordCaps('Kenda bay is located near Australia');
 // function as objects also have their methods
 // Task - create a fn that modifies the passed strings and returns by which fn
 
-const stringModifier = function (str,fn) {
-console.log(`String Transformed:${fn(str)} by: ${fn     .name}`); // read the declared name of the function an returns it 
+const stringModifier = function (str, fn) {
+    console.log(`String Transformed:${ fn(str) } by: ${ fn.name }`); // read the declared name of the function an returns it 
 };
 stringModifier('This is my home', oneWord);
 stringModifier('This is my home', FstWordCaps);
@@ -119,7 +119,7 @@ const swiss = {
     book (name, flight_num) {
         console.log(`${ name } booked a seat on ${ this.airlines } flight ${ this.iataCode }${ flight_num }`);
         // this.bookings.push(book);
-        this.bookings.push({ flight: `${ this.iataCode }${ flight_num }`,name:  `${name}`});
+        this.bookings.push({ flight: `${ this.iataCode }${ flight_num }`, name: `${ name }` });
     }
 };
 
@@ -141,7 +141,7 @@ const book = swiss.book; // we use this book function value
 // in the call() fn the first args is the name of the fn to which to use the this keyword 
 // The args then follow respectively
 book.call(Quatar, 'Dennis', 77);
-book.call(swiss,'Wanterekini', 89)
+book.call(swiss, 'Wanterekini', 89);
 // The change is included in the Quatar object it would in the swiss
 
 // We can also use apply where the args are in array format
@@ -169,6 +169,49 @@ const BookQuattar1 = book.bind(Quatar, 'Mustname');
 BookQuattar1('Mr. Sleeepy', 27);
 BookQuattar1(44); //
 
+// Start Plane Number default
+let initial_plane = 300;
+
+// increment once buy button clicked
+const increment = function () {
+    initial_plane++;
+    console.log(initial_plane);
+};
+//  remove the 'body has been clicked' on the buttons 
+const Body_State = document.querySelector('body');
+const rm_body_state = function () {
+    return Body_State.removeEventListener('click', todo);
+}
+const pointer = function () {
+    console.log('pointerup event handler fn. ');
+    increment();
+    rm_body_state();
+};
+
+const buy_btn = document.querySelector('.buy');
+const poll_btn = document.querySelector('.poll');
+
+buy_btn.addEventListener('pointerup', pointer);
+
+const kill_btns = function () {
+
+    // Kill the two btn once the buy and poll activities are done
+    buy_btn.removeEventListener('pointerup', pointer);
+    poll_btn.removeEventListener('mouseover', mouseOver);
+    
+}
+
+const mouseOver = function () {
+    rm_body_state();
+    console.log('mouseover event handler fns');
+    alert(`The polls/Number of planes is:${initial_plane} `);
+    alert('POLLS CLOSED!!');
+  
+    // Calls the kill_btns();
+    kill_btns();
+};
+
+poll_btn.addEventListener('mouseover', mouseOver);
 
 
 
