@@ -28,3 +28,9 @@ console.log(SetArr);
 console.log(playArr);
 
 // NOTE Since sets are also iterables the same manipulation done with arrays can be used on sets
+newSet.forEach(function (value, _, set) { // three args are passed value key and entire set 
+    // console.log(`${ key }: ${ value }`);  // but since the key and value are the same
+    // we use the throwayVariable (_) to use same params ie
+    // (value,value,set)
+    console.log(`${ value }:${ value }`);
+});

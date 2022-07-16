@@ -67,15 +67,15 @@ const rest = {
     // We no longer have to refer to the property and set it to a function expression instead:-
     // unlike in orderDelivery refer
     // NEW
-    order(starternumber) {
+    order (starternumber) {
         return console.log(this.starterMenu[starternumber]);
     },
     // if we still want to have our openingHours at the restaurant objects we 
     // ES6 enhanced object literals
     openingHours,
     // TO DO
-    orderDelivery: function({ time, address, mainIndex, StarterIndex }) { //destructure the object on pass of parameters immediately
-        console.log(`Order of ${this.mainMenu[mainIndex]} ${this.starterMenu[StarterIndex]} to be 🚚 delivered at ${address} at ${time} hours`);
+    orderDelivery: function ({ time, address, mainIndex, StarterIndex }) { //destructure the object on pass of parameters immediately
+        console.log(`Order of ${ this.mainMenu[mainIndex] } ${ this.starterMenu[StarterIndex] } to be 🚚 delivered at ${ address } at ${ time } hours`);
     },
 
 };
@@ -86,7 +86,6 @@ const newMap1 = new Map([
     [2, 'London'],
     [3, 'Berlin'],
     ['correct', 1],
-
     ['time-start', 12],
     ['time-end', 23],
     [true, 'YaY - Correct 🤪'],
@@ -103,10 +102,18 @@ console.log(newMap2);
 // Iterating over maps
 for (let [key, value] of newMap1) {
     // console.log(newMap1.get(index));
-    if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+    if (typeof key === 'number') console.log(`Answer ${ key }: ${ value }`);
 
 }
 let user_ans = Number(prompt(newMap1.get('Question')));
 const result = user_ans !== 1 ? newMap1.get(false) : newMap1.get(true);
 console.log(result);
 //Converting a map to an array
+
+// using the forEach method on maps
+// it uses a callback fn that tells the forEach() what to do
+// requires three args (value, key, map)
+
+newMap1.forEach(function (value, key, map) { // these offcourse can be given any other names 
+    console.log(`${ key } : ${ value }`);
+});

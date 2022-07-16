@@ -636,6 +636,7 @@ const scorers1 = new Object({
 console.log(scorers1);
 */
 
+/*
 const gameEvents = new Map([
     [17, '⚽️ GOAL'],
     [36, '🔁 Substitution'],
@@ -681,3 +682,323 @@ for (const [min, events] of gameEvents.entries()) {
 //Return the last elementof the keys
 const LanTime = [...gameEvents.keys()].pop(); // pop () returns the last element of the array
 console.log(LanTime);
+*/
+
+/*
+// forEach method now on Arrays
+const oddNums = [7, 5, 3, 671];
+// The forEach() on arrays is a Higher order fn where three args are passed value , index ,array
+oddNums.forEach(function (value, index, array) { // these offcourse can have other names
+  if (value < 100) {
+    console.log(`${ index + 1 }: ${ value }`);
+  } else {
+    console.log('Greater than 100');
+    console.log(`${ index + 1 }: ${ value }`);
+  };
+});
+
+// Execution context 
+const name = 'Imani';
+
+function first () {
+  let a = 1;
+  const b = second(7, 9);
+  a = a + b;
+  return a;
+};
+
+function second(x,y) {
+  var c = 2;
+  return c;
+};
+
+let x = first();
+console.log(x);
+x = second();
+console.log(x);
+
+let firstName; 
+// Scoping in java script
+const calcAge = function (birthYear) {
+  const age = 2022 - birthYear;
+  console.log(`${ firstName } is ${ age } years young`);
+  
+  const printAge = function () {
+    const output = `You are ${ age }, born in ${ birthYear }`;
+    console.log(output);
+
+    if (1981 >= birthYear <= 1996) {
+      console.log('Congrats you are a Millenial,',`${firstName}`); // scope chain look-up is in the global scope
+    }
+  }
+  // function call
+  // printAge();
+  printAge.call();
+
+  return age;
+};
+// let firstName = 'Imani'; // will be accessible because the variable firstName has been declared  before the function call thus exists in the memory.
+
+// In hoisting we could also do:-
+firstName = 'Imani';
+calcAge(1991);
+
+*/
+
+/*
+// using the var keyword to declare variables is prohobited this is because in hoisting it first creates an undefined variable which is later to be reassigned and causes bugs
+// functions also declared with the let and const keywords also conform to the same hoising rules
+
+// function call before declarations
+add(2, 3);
+
+function add (a, b) {
+  console.log(a + b);
+};
+
+// console.log(subtract(2,7));  // subtract is not a function because we are typically doing this:-
+// undefined(2,7); this is because the var keyword is hoisted to UNDEFINED 
+
+// const and let return reference error that cannot access before initialization
+
+const subtract = function (a, b) { // try with const and let .... uncomment line 758
+  return Math.max(a, b) - Math.min(a, b);
+};
+
+console.log(subtract(2, 7));
+console.log(subtract(7, 2));
+*/
+
+/*
+// NOTES
+// The this keyword never points to:-
+// 1. variable environment of the function
+// 2. the function in which we are using it.
+
+// Instead it points to the object calling the method.
+
+// NOTE:- arrow fns do not get their this keyword it will simply be the be the this keyword of the sorrounding function called 'lexical this keyword'- it gets picked up from the outer lexical scope of the arrow function. // ie the parent scope
+
+const measurement = {
+  firstName: 'Steven',
+  height: "168",
+  shoe: 8,
+  weight: "71",
+  year: 1923,
+
+  calcAge: function () { // parent scope
+    console.log(this); //refer line 778
+    console.log(`${ this.firstName } is ${ this.height }m tall`);
+
+    // 1. Use an extra variable self to preserve the this keyword as it exists here in the parent to the isMillenial function
+    const self = this;
+    const isMillenial = function () { // child scope
+      // console.log(this); // remember that a regular function call has the this keyword set to undefined 
+      console.log(self); // it's now the Jonas object#
+      
+      // console.log(this.year >= 1981 && this.year <= 1996);
+      console.log(self.year >= 1981 && self.year <= 1996); // 1923 //false
+  
+    };
+    isMillenial(); // This method will be called as soon as we call the measurement.calcAge()
+    // A more modern solution 2. is to use an arrow function as you know has access to the this keyword of parent scope
+    const checkMillenial = () => {
+      console.log(this.year >= 1981 && this.year <= 1996); // also returns false it uses the parent's this
+    };
+    checkMillenial();
+
+  },
+
+  greet: () => console.log(`His weight is ${ this.weight }`),
+
+};
+// function call
+measurement.calcAge(); // this keyword from line 789 points to the measurement object.
+
+// This line removes the below error *undefined
+var weight = '106 pounds'; // but we shouldn't use var
+
+// error on purpose refer line 780
+measurement.greet(); // His weight is 'undefined'  // parent scope here is the global scope not the measurement object
+// This becomes dangerous as var  actually creates properties in the global object.
+// let and const do not.
+
+// The above line could work if we use the knowledge from below and use var in the creation of a firstName property in the global object.
+let x = 1;
+const y = 2;
+var z = 3;
+
+// to check if it does create a property on the global object.
+if (z === window.z) {
+  console.log('exists');
+};
+//  check for let
+if (x !== window.x) {
+  console.log('does not exist');
+};
+// check for const
+if (y !== window.y) {
+  console.log('does not exist');
+};
+
+console.log(this); // points to the window objects in the global scope
+
+// arguments keyword also exists only in regular function expressions and not in arrow functions
+// it is used when we want to give arguments more than the one given in the function declaration
+
+function add (a, b) {
+  console.log(arguments);
+  console.log(a + b);
+};
+
+add(2, 4, 5, 7, 8, 9, 10,);
+// we then use the arguments array to loop over the array so as to use the arguments
+// this is not used in modern javaScript because there is a better method that we can use. 
+*/
+
+/*
+// Objects copying 
+let age = 30;
+const oldage = age;
+age = 31;
+
+console.log(age, oldage);
+
+const me = {
+  first_name: 'Davis',
+  last_name: 'williams',
+  age: 24,
+  sports: ['football', 'basketball', 'volleyball'], // an object
+};
+
+const friend = me;
+// suppossing the friemd is 27 aand we want to change hhis/her age 
+friend.age = 27;
+friend.last_name = 'karani'
+// console.log(friend); // output is as expected
+// console.log(me); // is also has the changed age which should not be the case. // refer to screenshot.
+
+
+// To overcome this we can do 
+// has a limitation in that it creates a shallow copy 
+// in that if there exists another object in this object then it would still result in the same error we saw above.
+const other_friend = Object.assign({}, friend);
+
+
+// Object.assign({}, friend); // we merge an empty object to the one whose name we want a copy.
+other_friend.age = 31;
+other_friend.last_name = 'Gitau';
+other_friend.sports.push('netball', 'handball');
+// When we log even the copy is still changed
+console.log(other_friend);
+console.log(friend);
+
+// later on we we learn how to import and use the 'Lo-Dash' library to give us the deep clone feature to be able to do this.
+*/
+
+class Car {
+  constructor (model, productionYear) {
+    this.model = model;
+    this.productionYear = productionYear;
+  };
+  // A class method that return the age of the car
+  age () {
+    let date = new Date();
+    // The day starts counting from Monday = 1;
+    console.log(date.getDate(), date.getDay());
+
+    return date.getFullYear() - this.productionYear;
+
+  };
+};
+
+
+// using classes to  create objects as in:- 
+const myCar = new Car('Audi', 2021);
+console.log(myCar);
+console.log(myCar.age());
+
+// JavaScript Object Notation(JSON); -NB it is language independent
+// It is a format for storing and transporting data - used when data is transported from a server to a web page.
+// It can be used to send data between computers.
+// First create a javascript string containing JSON syntax.
+let text = '{"name":"John","birth":"1986-12-14", "age":30, "myFunction":"function () {return `${this.name} is ${this.age} years old.`;}" ,"car":null,"bought": false}';
+// Second use the javascript built in function JSON.parse() to conert the string into a javascript object
+const JsObject = JSON.parse(text);
+console.log(JsObject);
+
+console.log(JsObject['age']); // 30  // using bracket notation.
+
+let emptyText = "";
+for (let x in JsObject) {
+  emptyText += x + ", ";
+};
+console.log(emptyText);
+
+// JSON does not include functions, dates, undefined
+// work around for dates in json text file
+JsObject.birth = new Date(JsObject.birth);
+console.log(JsObject.birth);
+
+// Alteratively you can use the reviver function
+// The second reviver parameter is a function that checks the value before returning the value
+const checker = JSON.parse(text, function (key, value) {
+  if (key === 'birth') {
+    return new Date(value);
+  } else {
+    return value;
+  }
+});
+// function call
+console.log(checker);  // Note:- same output
+
+// You should avoid using functions in JSON, the functions will lose their scope,
+// to pass functions in JSON we use eval() to convert them back to functions 
+JsObject.myFunction = eval("(" + JsObject.myFunction + ")");
+console.log(JsObject.myFunction()); // function call 
+
+// JavaScript has  a built in function JSON.stringfy() that is used to convert javascript objects to JSON.
+let myDetails = {
+  firstName: 'Proholyce',
+  lastName: 'Imani',
+  birth_year: 1991,
+  job: 'Software Engineer',
+  friends: ['You', 'Evans', 'Brian', 'Elizabeth'],
+  university: 'Jkuat',
+  HomeTown: 'Nakuru',
+  Single: true,
+
+
+  calcAge: function () {
+    // this is the object myDetails
+    return 2017 - this.birth_year;
+  }
+};
+// functions are not part of the JSON text. -  they are thus removed from the javascript object both the key and the value
+// However we can work around this by first converting the function toString();
+myDetails.calcAge = myDetails.calcAge.toString(); // prevent the ommission of the function being converted into JSON
+
+const JsonString = JSON.stringify(myDetails);
+console.log(JsonString); // JSON string 
+
+// Storing the JavaScript object in the local storage
+// Once we stringfy() the object:- 
+//  setItem() takes key/value pairs
+// first arg is the name(key) which our JSON is to called by
+// second args(value) is the JSON 
+localStorage.setItem('testJSON', JsonString); // localStorage() is a web API.
+
+// Retrieving the data 
+let data = localStorage.getItem('testJSON');
+// console.log(data); // JsonString === data (true)
+
+// Sending of the JSON data to a server -:-
+// window.location = "demo_json.php?x=" + JsonString; // the file demo_json.php os not currently present 
+
+const xmlhttp = new XMLHttpRequest();
+xmlhttp.onload = function () {
+  const myObj = JSON.parse(this.responseText);
+  document.getElementById("demo").innerHTML = myObj.name;
+}
+xmlhttp.open("GET", "demo_file.php");
+xmlhttp.send();

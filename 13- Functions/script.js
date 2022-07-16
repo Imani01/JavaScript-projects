@@ -169,6 +169,7 @@ const BookQuattar1 = book.bind(Quatar, 'Mustname');
 BookQuattar1('Mr. Sleeepy', 27);
 BookQuattar1(44); //
 
+/*
 // Start Plane Number default
 let initial_plane = 300;
 
@@ -213,5 +214,30 @@ const mouseOver = function () {
 
 poll_btn.addEventListener('mouseover', mouseOver);
 
+*/
 
+// Partial Application
+const AddTax = (value, rate) =>( value + value) * rate;
+console.log(AddTax(300, 0.35));
 
+// In arrow functions we can also bind the this keyword to a specific function and set a default value
+// we set the default rate and it gives us the VAT for any value we pass into it
+// null arrow fns do not have the this keyword 
+const Vat = AddTax.bind(null, 0.17);
+// function call 
+console.log(Vat(2300));
+
+// task -  create a function that returns a function that does as above
+const taxPay = function (rate) {
+    return function (value) {  // declared to Vat2 in the fn call
+        return (value + value) * rate;
+    }
+};
+
+// Function call
+const Vat2 = taxPay(0.17); // pass in the rate
+console.log(Vat2(1000)); // second returns with the values
+console.log(Vat2(2300)); // same output 
+
+// TODO
+// Coding challlenge #1 on functions

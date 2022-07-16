@@ -204,3 +204,36 @@ const emoji = function (count) {
 emoji(3);
 emoji(10);
 emoji(7.2); // The decimal is truncated
+
+// Last coding Challenge on Data Structures and Modern Operators
+// Adding the two buttons as specified in CSS in the HTML file
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+// // Reads the value of the input in the textarea
+// const test = document.querySelector('textarea');
+
+// Task accept userData,
+// test data to be pasted in the TextArea
+
+/*
+underscore_case
+ fist_name
+Some_Variable
+  calculate_Age
+delayed_departure
+*/
+
+// Task enter Text in the TextArea and check the given conditons and produce the shown output 
+// Coding challenge #
+
+const Click = document.querySelector('button');
+Click.innerHTML = 'Click!!';
+const TextArea = document.querySelector('textarea');
+TextArea.defaultValue = 'Enter Your Text Here';
+
+
+Click.addEventListener('click', function () {
+  console.log(test);
+});   
+
